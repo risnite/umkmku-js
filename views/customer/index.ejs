@@ -1,0 +1,87 @@
+<!-- Page header -->
+<%- include('../layouts/header', {name:'Customer'}) %>
+  <div class="card">
+    <%- include('../layouts/card-header', {name:'Daftar Customer', href:'/customer/create'}) %>
+      <div class="card-body p-0">
+        <table class="table table-striped projects">
+          <thead>
+            <tr>
+              <th style="width: 1%">
+                Id
+              </th>
+              <th style="width: 20%">
+                Customer
+              </th>
+              <th style="width: 30%">
+                Alamat
+              </th>
+              <th>
+                No. Telp
+              </th>
+              <th style="width: 20%">
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% Object.values(customers).forEach(customer=> { %>
+              <tr>
+                <td>
+                  <%= customer.id %>
+                </td>
+                <td>
+                  <%= customer.nama %>
+                </td>
+                <td>
+                  <%= customer.alamat %>
+                </td>
+                <td class="project_progress">
+                  <%= customer.telp %>
+                </td>
+                <td class="project-actions text-right">
+                  <a class="btn btn-primary btn-sm" href="#">
+                    <i class="fas fa-folder">
+                    </i>
+                    View
+                  </a>
+                  <a class="btn btn-info btn-sm" href="/customer/edit/{{ $customer->id }}">
+                    <i class="fas fa-pencil-alt">
+                    </i>
+                    Ubah
+                  </a>
+                  <form action="/customer/{{ $customer->id }}" method="POST" class="d-inline"
+                    id="delete-customer{{ $customer->id }}">
+                    <button type="button" class="btn btn-danger btn-sm"
+                      onclick="swalConfirm('delete-customer{{ $customer->id }}')">
+                      <i class="fas fa-trash"></i>
+                      Hapus
+                    </button>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+  </div>
+
+  <!-- <table>
+  <tr>
+    <th>nama</th>
+    <th>alamat</th>
+    <th>telp</th>
+  </tr>
+  <% Object.values(customers).forEach(customer=> { %>
+    <tr>
+      <td>
+        <%= customer.nama %>
+      </td>
+      <td>
+        <%= customer.alamat %>
+      </td>
+      <td>
+        <%= customer.telp %>
+      </td>
+    </tr>
+    <% }) %>
+</table> -->
